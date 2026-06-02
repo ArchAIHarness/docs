@@ -30,17 +30,38 @@
 | 多租户隔离 | 第三方平台 = 独立租户,用户数据天然隔绝 |
 | 无状态可水平扩展 | 鉴权过程不依赖 Session,Cookie 由 SaaS 域名签发 |
 
+## 协议时序
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 终端用户
+    participant TP as 第三方平台
+    participant TPB as 第三方后端
+    participant SSO as SSO Provider
+    participant PAGE as SaaS 功能页
+
+    U->>TP: 在第三方平台点击「打开 SaaS 功能」
+    TP->>TPB: 请求生成 SSO 跳转 URL
+    TPB->>TPB: 组装业务参数<br/>HMAC-SHA256 签名
+    TPB-->>TP: 返回带 sign 的 SSO URL
+    TP->>SSO: iframe.src / window.open 跳转
+    SSO->>SSO: 校验 clientId / 签名 / 租户归属
+    SSO->>SSO: 同步或合并用户账号
+    SSO-->>PAGE: 302 重定向 + Set-Cookie 登录态
+    PAGE-->>U: 渲染已登录的业务页面
+```
+
 ## 核心模型
 
-```text
-┌────────────────┐                  ┌──────────────────┐                ┌─────────────────┐
-│  第三方平台      │   ① 后端签名     │   SSO Provider   │  ③ 同步登录态   │  SaaS 功能页    │
-│ (Third Party)  │ ───────────────► │  (Auth Gateway)  │ ─────────────► │  (Module Page)  │
-│                │                  │                  │                │                 │
-│ 持有 AK/SK     │ ② 前端跳转       │ - 验证签名        │ ④ 302 + Cookie │ - 已登录状态     │
-│ 持有用户上下文  │   iframe/window  │ - 解析用户上下文  │                │ - 渲染业务数据   │
-└────────────────┘                  │ - 同步/合并账号   │                └─────────────────┘
-                                    └──────────────────┘
+```mermaid
+flowchart LR
+    TP["第三方平台 Third Party<br/>持有 AK/SK<br/>持有用户上下文"]
+    SSO["SSO Provider<br/>验证签名<br/>解析用户上下文<br/>同步 / 合并账号"]
+    PAGE["SaaS 功能页 Module Page<br/>已登录状态<br/>渲染业务数据"]
+
+    TP -->|"① 后端签名 + ② 前端跳转<br/>iframe / window.open"| SSO
+    SSO -->|"③ 同步登录态<br/>④ 302 + Cookie"| PAGE
 ```
 
 四个关键角色:
@@ -121,14 +142,19 @@ sign   = Base64(签名字节)          // 服务端 verify 时同样 Base64 解�
 
 ### 签名校验(服务端)
 
-```text
-1. 取出 clientId,查询对应 SK
-2. Base64Url 解码 params 得到规范化字符串 raw
-3. 计算 expectedSign = Base64(HmacSHA256(raw, SK))
-4. 常量时间比较 expectedSign 与请求中的 sign
-5. 解析 raw 为 KV,验证业务字段(tenantCode 是否归属该 clientId)
-6. 检查时间窗口(若 raw 含时间戳,推荐 ±5 分钟)
-7. 检查 nonce(若有,防重放)
+```mermaid
+flowchart TD
+    A[接收 SSO 请求] --> B[取出 clientId<br/>查询对应 SK]
+    B --> C[Base64Url 解码 params<br/>得到规范化字符串 raw]
+    C --> D[计算 expectedSign<br/>= Base64<br/>HmacSHA256 raw, SK]
+    D --> E{常量时间比较<br/>expectedSign vs sign}
+    E -->|不匹配| X1[拒绝: INVALID_SIGNATURE]
+    E -->|匹配| F[解析 raw 为 KV<br/>验证 tenantCode 归属]
+    F --> G{时间窗口校验<br/>±5 分钟}
+    G -->|过期| X2[拒绝: TIMESTAMP_EXPIRED]
+    G -->|通过| H{nonce 是否复用<br/>查 Redis}
+    H -->|已用| X3[拒绝: REPLAY_DETECTED]
+    H -->|未用| I[通过校验<br/>建立登录态]
 ```
 
 > ⚠️ 比较签名**必须用常量时间比较**(如 `MessageDigest.isEqual`),`String.equals` 早退会泄露时序信息,可被旁路攻击。
@@ -137,30 +163,42 @@ sign   = Base64(签名字节)          // 服务端 verify 时同样 Base64 解�
 
 第三方用户进入 SaaS 后,SaaS 需要决定:**这是新建账号、合并到现有账号、还是直接复用?**
 
-```text
-SSO 携带 phone?
-├─ 否 ─→ 创建 SaaS 账号,关联 (tenantCode, userId),独立存在
-└─ 是 ─→ 查询 SaaS 是否已有该 phone 账号
-         ├─ 无 ─→ 创建 SaaS 账号,落地 phone,关联 (tenantCode, userId)
-         └─ 有 ─→ 在该账号下增加映射 (tenantCode, userId)
-                  同一自然人,多个第三方身份,统一在 SaaS 视图下
+```mermaid
+flowchart TD
+    Start[SSO 请求到达] --> Q1{携带 phone?}
+
+    Q1 -->|否| C1[创建 SaaS 账号<br/>关联 tenantCode + userId<br/>账号独立存在]
+
+    Q1 -->|是| Q2{SaaS 已有该 phone 账号?}
+    Q2 -->|无| C2[创建 SaaS 账号<br/>落地 phone<br/>关联 tenantCode + userId]
+    Q2 -->|有| C3[复用现有账号<br/>新增映射 tenantCode + userId<br/>同一自然人,多重身份]
+
+    C1 --> End[建立登录态]
+    C2 --> End
+    C3 --> End
 ```
 
 **数据模型**(简化):
 
-```text
-saas_user
-├── id              # SaaS 主键
-├── phone           # 自然人唯一锚点(可空)
-├── nickname
-└── avatar
+```mermaid
+erDiagram
+    SAAS_USER ||--o{ THIRD_PARTY_IDENTITY : "1 : N"
 
-third_party_identity      # 第三方身份映射表
-├── saas_user_id          # 关联 saas_user
-├── tenant_code           # 第三方租户
-├── third_user_id         # 第三方用户 ID
-└── UNIQUE(tenant_code, third_user_id)
+    SAAS_USER {
+        bigint id PK "SaaS 主键"
+        string phone UK "自然人唯一锚点 可空"
+        string nickname
+        string avatar
+    }
+
+    THIRD_PARTY_IDENTITY {
+        bigint saas_user_id FK "关联 SaaS 账号"
+        string tenant_code "第三方租户"
+        string third_user_id "第三方用户 ID"
+    }
 ```
+
+> 索引约束:`UNIQUE(tenant_code, third_user_id)` —— 保证一个第三方用户最多绑定到 SaaS 一个账号。
 
 
 ## 接入参考实现(Java)
@@ -322,21 +360,15 @@ public SsoIdentity verify(SsoRequest req) {
 
 ## 落地路径建议
 
-```text
-Phase 1  →  控制台支持租户级 AK/SK 签发
-            提供「重新生成」「禁用」「调用记录」基础能力
+```mermaid
+flowchart LR
+    P1["Phase 1<br/>控制台 AK/SK 签发<br/>重新生成 / 禁用 / 调用记录"]
+    P2["Phase 2<br/>SSO Provider 接口<br/>统一签名校验 + 租户隔离"]
+    P3["Phase 3<br/>安全加固<br/>timestamp + nonce + 白名单"]
+    P4["Phase 4<br/>多端 SDK<br/>Java / Node.js / Python"]
+    P5["Phase 5<br/>审计与观测<br/>SSO 跳转全链路留痕"]
 
-Phase 2  →  实现 SSO Provider 接口
-            接入 SaaS 网关,统一签名校验与租户隔离
-
-Phase 3  →  补齐安全加固
-            加入 timestamp + nonce 防重放、redirectUri 白名单
-
-Phase 4  →  开放接入文档与 SDK
-            Java / Node.js / Python 三端 SDK 降低接入成本
-
-Phase 5  →  接入审计与运营观测
-            每次 SSO 跳转留痕(谁、什么时候、跳哪、是否成功)
+    P1 --> P2 --> P3 --> P4 --> P5
 ```
 
 > **延伸阅读**
