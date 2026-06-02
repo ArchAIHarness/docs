@@ -4,8 +4,6 @@
 >
 > 把 DDD 分层与多租户基础设施融合,作为人机协同开发的稳定底座。
 
----
-
 ## 模式定位
 
 | 维度 | 说明 |
@@ -13,8 +11,6 @@
 | **解决什么** | 多租户 SaaS / 业务中台 / 企业级 DDD 系统的标准化底座 |
 | **何时使用** | 业务边界清晰、需要租户隔离、追求长期可演进 |
 | **何时不用** | 简单 CRUD、单租户工具、原型验证 |
-
----
 
 ## 六边形 + DDD 分层
 
@@ -55,8 +51,6 @@ flowchart TB
 | 4️⃣ 聚合根唯一入口 | 聚合内对象只通过聚合根修改 |
 | 5️⃣ 聚合间 ID 引用 | 聚合之间不直接持有对方对象,只持有 ID |
 
----
-
 ## 标准目录结构
 
 ```text
@@ -91,8 +85,6 @@ my-service/
 └── bootstrap/              # 启动模块
     └── Application.java
 ```
-
----
 
 ## 多租户基础架构
 
@@ -147,8 +139,6 @@ sequenceDiagram
 
 > ⚠️ **常见坑**:`@Async` 方法不会自动继承 `ThreadLocal`,必须用 `TaskDecorator` 包装。
 
----
-
 ## DDD 与多租户的融合
 
 ### 聚合根自动携带 tenantId
@@ -181,8 +171,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 }
 ```
 
----
-
 ## CQRS 模式应用
 
 ### 命令侧(Command)
@@ -208,8 +196,6 @@ Controller → QueryService → 直接查询 ReadModel
 - 高性能、灵活组合
 - 可针对查询场景独立优化
 
----
-
 ## 一致性模式
 
 ### 同域同步
@@ -231,8 +217,6 @@ LocalTx { changeOrder() + saveOutboxEvent() }
 ```
 
 > 🔒 **铁律**:跨 BC 一律异步,通过**幂等 + 重试 + 死信队列**兜底。
-
----
 
 ## Agent 边界 (agents.md)
 
@@ -262,8 +246,6 @@ LocalTx { changeOrder() + saveOutboxEvent() }
 
 > 💡 **AI 在框架内编码时,自动遵守这些约束**,产出可直接合入主干。
 
----
-
 ## 适用场景速查
 
 | 场景 | 推荐度 | 关键原因 |
@@ -276,8 +258,6 @@ LocalTx { changeOrder() + saveOutboxEvent() }
 | 📝 简单 CRUD | ⭐⭐ | 杀鸡用牛刀,不建议 |
 | 🧪 原型验证 | ⭐ | 框架启动成本大于收益 |
 
----
-
 ## 与主流方案的对比
 
 | 维度 | 传统 Spring | 纯 DDD | **ArchAIHarness** |
@@ -287,8 +267,6 @@ LocalTx { changeOrder() + saveOutboxEvent() }
 | AI 协同 | 无 | 无 | **agents.md 强约束** |
 | 学习成本 | 低 | 高 | **中(框架收敛复杂度)** |
 | 长期可演进 | 弱 | 强 | **强 + 工程化保障** |
-
----
 
 ## 落地路径建议
 
@@ -305,8 +283,6 @@ Phase 3  →  接入 mcp-sdk
 Phase 4  →  按需引入 skill-market 技能包
             扩展领域专属 AI 能力
 ```
-
----
 
 > **延伸阅读**
 > - [架构设计入门指南](../0xA0_实践方法/0xA1_架构设计入门指南.md) —— DDD 分层背后的设计逻辑
