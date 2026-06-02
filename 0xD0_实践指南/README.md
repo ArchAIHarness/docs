@@ -12,6 +12,10 @@
 | D4 | [Kubernetes 底层工作原理](./Kubernetes底层工作原理.md) | 控制平面、节点组件、网络、存储与调谐循环 |
 | D5 | [kubectl apply 执行流程与优化指南](./KubectlApply执行流程与优化指南.md) | API Discovery、CLI 调用开销与 SDK 优化 |
 | D6 | [Kubernetes 本地开发环境部署指南](./Kubernetes本地开发环境部署指南.md) | Docker Desktop + Ingress + socat 本地链路 |
+| D7 | [OpenClaw 安装与本地网关配置指南](./OpenClaw安装与本地网关配置指南.md) | OpenClaw 安装、doctor 检查与本地网关启动 |
+| D8 | [Agent Skills 实践指南](./AgentSkills实践指南.md) | 技能标准、渐进式披露、Tool/MCP 分工与工程化实践 |
+| D9 | [本地大模型运行实践指南](./本地大模型运行实践指南.md) | LM Studio、Ollama、本地 API 与并发实践 |
+| D10 | [OpenVPN Docker 部署指南](./OpenVPNDocker部署指南.md) | OpenVPN 容器部署、证书生成、网络限制与运维命令 |
 
 ## 后续规划
 

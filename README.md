@@ -47,6 +47,7 @@ ArchAIHarness 的唯一权威知识库,沉淀「**人负责架构、AI 负责编
 - [代码质量评估体系](./0xA0_实践方法/代码质量评估体系.md)
 - [架构设计 SOP](./0xA0_实践方法/架构设计SOP.md)
 - [端到端研发交付 SOP](./0xA0_实践方法/端到端研发交付SOP.md)
+- [AI 与大模型基础认知](./0xA0_实践方法/AI与大模型基础认知.md)
 
 ### [0xB0 · 模板文档](./0xB0_模板文档)
 
@@ -73,6 +74,10 @@ ArchAIHarness 的唯一权威知识库,沉淀「**人负责架构、AI 负责编
 - [Kubernetes 底层工作原理](./0xD0_实践指南/Kubernetes底层工作原理.md)
 - [kubectl apply 执行流程与优化指南](./0xD0_实践指南/KubectlApply执行流程与优化指南.md)
 - [Kubernetes 本地开发环境部署指南](./0xD0_实践指南/Kubernetes本地开发环境部署指南.md)
+- [OpenClaw 安装与本地网关配置指南](./0xD0_实践指南/OpenClaw安装与本地网关配置指南.md)
+- [Agent Skills 实践指南](./0xD0_实践指南/AgentSkills实践指南.md)
+- [本地大模型运行实践指南](./0xD0_实践指南/本地大模型运行实践指南.md)
+- [OpenVPN Docker 部署指南](./0xD0_实践指南/OpenVPNDocker部署指南.md)
 
 ### [0xE0 · 设计方案](./0xE0_设计方案)
 
