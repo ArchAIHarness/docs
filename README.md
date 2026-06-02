@@ -70,6 +70,9 @@ ArchAIHarness 的唯一权威知识库,沉淀「**人负责架构、AI 负责编
 - [OpenCode K8S 集群部署指南](./0xD0_实践指南/OpenCodeK8S集群部署指南.md)
 - [Vibe Coding 实践指南](./0xD0_实践指南/VibeCoding实践指南.md)
 - [OpenCode 全体系深度解析](./0xD0_实践指南/OpenCode全体系深度解析.md)
+- [Kubernetes 底层工作原理](./0xD0_实践指南/Kubernetes底层工作原理.md)
+- [kubectl apply 执行流程与优化指南](./0xD0_实践指南/KubectlApply执行流程与优化指南.md)
+- [Kubernetes 本地开发环境部署指南](./0xD0_实践指南/Kubernetes本地开发环境部署指南.md)
 
 ### [0xE0 · 设计方案](./0xE0_设计方案)
 

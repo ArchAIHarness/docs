@@ -9,6 +9,9 @@
 | D1 | [OpenCode K8S 集群部署指南](./OpenCodeK8S集群部署指南.md) | 多 Pod 会话一致性 + 插件同步 + 事件总线 |
 | D2 | [Vibe Coding 实践指南](./VibeCoding实践指南.md) | AI 增强人类的编码实践方法 |
 | D3 | [OpenCode 全体系深度解析](./OpenCode全体系深度解析.md) | OpenCode 底层原理、配置体系与 Agent 能力 |
+| D4 | [Kubernetes 底层工作原理](./Kubernetes底层工作原理.md) | 控制平面、节点组件、网络、存储与调谐循环 |
+| D5 | [kubectl apply 执行流程与优化指南](./KubectlApply执行流程与优化指南.md) | API Discovery、CLI 调用开销与 SDK 优化 |
+| D6 | [Kubernetes 本地开发环境部署指南](./Kubernetes本地开发环境部署指南.md) | Docker Desktop + Ingress + socat 本地链路 |
 
 ## 后续规划
 
