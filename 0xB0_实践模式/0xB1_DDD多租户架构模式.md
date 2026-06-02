@@ -309,6 +309,6 @@ Phase 4  →  按需引入 skill-market 技能包
 ---
 
 > **延伸阅读**
-> - [架构设计入门指南](../02-methodology/01-architecture-primer.md) —— DDD 分层背后的设计逻辑
-> - [团队协作落地手册](../02-methodology/03-team-playbook.md) —— DDD/TDD/SDD 三位一体
-> - [人机协同开发流程](../02-methodology/02-human-ai-collaboration.md) —— 在框架内驾驭 AI
+> - [架构设计入门指南](../0xA0_实践方法/0xA1_架构设计入门指南.md) —— DDD 分层背后的设计逻辑
+> - [团队协作落地手册](../0xA0_实践方法/0xA3_团队协作落地手册.md) —— DDD/TDD/SDD 三位一体
+> - [人机协同开发流程](../0xA0_实践方法/0xA2_人机协同开发流程.md) —— 在框架内驾驭 AI
