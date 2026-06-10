@@ -1,0 +1,19 @@
+flowchart LR
+    PC[PC 程序计数器
+下一条指令地址] --> Fetch[取指 Fetch
+从内存/缓存读取指令]
+    Fetch --> IR[IR 指令寄存器
+保存当前指令]
+    IR --> Decode[译码 Decode
+解释操作码和操作数]
+    Decode --> Read[读取操作数
+寄存器/立即数/地址]
+    Read --> Execute[执行 Execute
+ALU / 控制单元协同]
+    Execute --> Memory[访存 Memory
+Load / Store]
+    Memory --> WriteBack[写回 Write Back
+更新寄存器/内存]
+    WriteBack --> UpdatePC[更新 PC
+顺序/跳转/分支]
+    UpdatePC --> PC

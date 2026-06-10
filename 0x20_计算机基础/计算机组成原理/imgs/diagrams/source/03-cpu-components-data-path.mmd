@@ -1,0 +1,17 @@
+flowchart TB
+    CU[控制单元
+解释指令并发出控制信号] --> RF[寄存器组
+保存高速临时状态]
+    CU --> ALU[ALU
+算术与逻辑运算]
+    RF <--> ALU
+    ALU --> FLAGS[状态寄存器
+零/进位/溢出/比较结果]
+    CU --> PC[PC / IR
+指令地址与当前指令]
+    RF <--> Cache[Cache
+缓解 CPU 与内存速度差]
+    Cache <--> Bus[总线 / 数据通路
+连接内存和设备]
+    Bus <--> Memory[内存
+程序与数据]

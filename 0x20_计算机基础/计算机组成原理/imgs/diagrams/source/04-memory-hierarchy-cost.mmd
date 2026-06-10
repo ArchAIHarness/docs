@@ -1,0 +1,16 @@
+flowchart TB
+    R[寄存器
+最快 / 最小 / 最贵] --> L1[L1 Cache
+极快 / 很小]
+    L1 --> L2[L2 Cache
+较快 / 较小]
+    L2 --> L3[L3 Cache
+共享 / 更大]
+    L3 --> RAM[内存 RAM
+大 / 慢得多]
+    RAM --> Disk[磁盘 / SSD
+更大 / 延迟更高]
+    Fast[越靠近 CPU
+速度越快 容量越小] -.-> R
+    Slow[越远离 CPU
+容量越大 访问代价越高] -.-> Disk

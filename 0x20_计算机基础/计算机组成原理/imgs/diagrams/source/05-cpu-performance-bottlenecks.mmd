@@ -1,0 +1,19 @@
+flowchart TB
+    Slow[程序变慢] --> Compute[算术计算多
+ALU 忙]
+    Slow --> CacheMiss[缓存未命中
+等待内存]
+    Slow --> Bandwidth[内存带宽不足
+数据搬运拥塞]
+    Slow --> Branch[分支预测失败
+流水线清空]
+    Slow --> Copy[大对象复制
+消耗带宽和缓存]
+    Slow --> Lock[锁竞争
+核心空转等待]
+    CacheMiss --> Principle[性能不只取决于算力
+还取决于数据如何流动]
+    Bandwidth --> Principle
+    Branch --> Principle
+    Copy --> Principle
+    Lock --> Principle
