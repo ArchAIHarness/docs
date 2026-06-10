@@ -1,0 +1,13 @@
+flowchart TB
+    Model[建模
+状态机 / 业务流水 / 幂等键] --> Call[调用
+超时 / 重试 / 退避]
+    Call --> Guard[保护
+限流 / 熔断 / 隔离 / 降级]
+    Guard --> Recover[恢复
+补偿 / 对账 / 人工兜底]
+    Recover --> Observe[观测
+日志 / Trace / 指标 / 事件]
+    Observe --> Improve[复盘改进
+识别薄弱链路]
+    Improve --> Model

@@ -1,0 +1,22 @@
+flowchart TB
+    Client[客户端视角
+超时 / 调用失败] --> Unknown{服务端真实状态?}
+    Unknown --> NotArrived[请求未到达
+无副作用]
+    Unknown --> Failed[请求到达但处理失败
+可能无副作用]
+    Unknown --> CommittedNoResp[处理成功但响应丢失
+已有副作用]
+    Unknown --> LateCommit[客户端超时后服务端提交
+状态未知]
+    Unknown --> Duplicate[重试导致重复请求
+需要幂等]
+    Unknown --> Reordered[消息乱序到达
+需要状态校验]
+    NotArrived --> Design[设计要求
+重试 + 幂等 + Trace + 补偿]
+    Failed --> Design
+    CommittedNoResp --> Design
+    LateCommit --> Design
+    Duplicate --> Design
+    Reordered --> Design

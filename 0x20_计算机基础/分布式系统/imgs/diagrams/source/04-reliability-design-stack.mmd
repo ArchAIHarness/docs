@@ -1,0 +1,18 @@
+flowchart LR
+    Request[跨服务写请求] --> Timeout[超时
+避免无限等待]
+    Timeout --> Retry[重试
+处理偶发失败]
+    Retry --> Idempotent[幂等
+防止重复副作用]
+    Idempotent --> StateMachine[状态机
+约束合法流转]
+    StateMachine --> EventLog[事务日志 / 事件
+可恢复可审计]
+    EventLog --> Compensation[补偿 / 对账
+修复中间状态]
+    Compensation --> Observability[日志 / 指标 / Trace
+还原故障现场]
+    Observability --> Result[可解释
+可恢复
+可收敛]
