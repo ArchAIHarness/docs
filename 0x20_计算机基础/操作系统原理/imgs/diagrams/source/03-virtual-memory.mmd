@@ -1,0 +1,14 @@
+flowchart LR
+    VA[进程看到的虚拟地址
+0x0040... ] --> MMU[MMU / 页表
+地址翻译与权限检查]
+    MMU --> PA[物理页框
+Frame 12 / 37 / 91]
+    MMU --> Fault[缺页 / 越权访问
+触发内核处理]
+    subgraph Isolation[进程隔离]
+      P1[进程 A 地址空间]
+      P2[进程 B 地址空间]
+    end
+    P1 --> MMU
+    P2 --> MMU

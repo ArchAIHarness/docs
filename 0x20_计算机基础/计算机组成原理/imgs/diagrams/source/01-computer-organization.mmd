@@ -1,0 +1,7 @@
+flowchart LR
+    Code[高级语言代码] --> Compile[编译/解释]
+    Compile --> Inst[机器指令]
+    Inst --> Fetch[取指]
+    Fetch --> Decode[译码]
+    Decode --> Execute[执行]
+    Execute --> State[寄存器/内存状态变化]

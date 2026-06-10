@@ -1,0 +1,12 @@
+flowchart LR
+    Path[路径
+/home/app/config.yaml] --> Dir[目录项
+名字到 inode]
+    Dir --> Inode[inode / 元数据
+权限 / 大小 / 时间]
+    Inode --> Map[数据块映射
+logical block -> physical block]
+    Map --> Block[块设备
+sector / block / offset]
+    Path --> API[open / read / write / close
+应用使用名字而非块地址]

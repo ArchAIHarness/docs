@@ -6,3 +6,11 @@
 *~
 node_modules/
 .cache/
+
+# Local secrets and tool credentials
+.env
+.env.*
+*.env
+.baoyu-skills/.env
+.baoyu-skills/**/*.env
+.baoyu-skills/mermaid-diagram-manifest.json

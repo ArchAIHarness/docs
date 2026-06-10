@@ -1,0 +1,6 @@
+flowchart LR
+    T[输入文本] --> K[Tokenizer]
+    K --> A[token 序列]
+    A --> M[大语言模型]
+    M --> P[下一个 token 概率分布]
+    P --> O[生成输出]

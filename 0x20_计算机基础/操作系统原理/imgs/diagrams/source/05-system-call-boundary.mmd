@@ -1,0 +1,18 @@
+flowchart TB
+    subgraph User[用户态]
+      App[应用程序]
+      Lib[运行库 / 标准库]
+    end
+    subgraph Boundary[受控边界]
+      Syscall[系统调用
+能力申请入口]
+    end
+    subgraph Kernel[内核态]
+      Check[权限与参数校验]
+      Resource[进程 / 内存 / 文件 / 网络]
+    end
+    subgraph Hardware[硬件]
+      Device[CPU / 内存 / 磁盘 / 网卡]
+    end
+    App --> Lib --> Syscall --> Check --> Resource --> Device
+    Check --> Deny[拒绝非法访问]

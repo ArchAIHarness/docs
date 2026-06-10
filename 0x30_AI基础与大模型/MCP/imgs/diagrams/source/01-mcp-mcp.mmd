@@ -1,0 +1,7 @@
+flowchart LR
+    C[MCP Client\nAgent/IDE/助手] --> S[MCP Server]
+    S --> T[Tools\n可调用动作]
+    S --> R[Resources\n可读取资源]
+    S --> P[Prompts\n可复用提示]
+    T --> E[外部系统\n文件/数据库/API]
+    R --> E

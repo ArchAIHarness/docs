@@ -1,0 +1,13 @@
+flowchart LR
+    Ready[就绪队列
+Process A / B / C] --> Scheduler[调度器
+选择下一个运行者]
+    Scheduler --> CPU[CPU 时间片
+短时间独占执行]
+    CPU --> Save[保存上下文
+寄存器 / PC / 状态]
+    Save --> Switch[上下文切换
+切到另一个进程]
+    Switch --> Ready
+    CPU --> Illusion[应用视角
+我在持续向前执行]

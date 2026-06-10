@@ -1,0 +1,7 @@
+sequenceDiagram
+    participant A as 节点A
+    participant B as 节点B
+    participant DB as 存储
+    A->>DB: 写入订单状态=已支付 t=10:00:01
+    B->>DB: 写入订单状态=已取消 t=10:00:00.900
+    Note over A,B: 本地时间可能有偏差，不能简单按机器时间判断真实先后

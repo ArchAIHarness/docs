@@ -1,0 +1,12 @@
+flowchart LR
+    Q[学习每个概念时提问
+制造了什么抽象？] --> Cost[识别隐藏成本
+CPU / 内存 / IO / 网络]
+    Cost --> Boundary[理解边界
+用户态 / 内核态 / 硬件]
+    Boundary --> Debug[排查问题
+从 API 追到系统资源]
+    Debug --> Design[写服务端程序
+尊重线程 / FD / 内存映射成本]
+    Design --> Reliable[稳定性来自
+理解抽象边界]

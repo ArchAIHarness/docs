@@ -1,0 +1,11 @@
+flowchart TD
+    App[应用程序] --> API[系统调用]
+    API --> OS[操作系统内核]
+    OS --> CPU[CPU 调度]
+    OS --> Mem[虚拟内存]
+    OS --> FS[文件系统]
+    OS --> Net[网络栈]
+    CPU --> HW[硬件资源]
+    Mem --> HW
+    FS --> HW
+    Net --> HW

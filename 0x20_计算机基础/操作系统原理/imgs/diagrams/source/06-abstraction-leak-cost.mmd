@@ -1,0 +1,18 @@
+flowchart LR
+    API[稳定 API 抽象] --> Pressure[系统压力上升]
+    Pressure --> CPU[调度抖动
+延迟变高]
+    Pressure --> Memory[内存不足
+换页频繁]
+    Pressure --> FS[文件缓存
+写入时机变化]
+    Pressure --> IO[网络 / 磁盘 IO
+线程阻塞]
+    Pressure --> Lock[锁竞争
+上下文切换增加]
+    CPU --> Diagnose[工程排查
+理解抽象背后的成本]
+    Memory --> Diagnose
+    FS --> Diagnose
+    IO --> Diagnose
+    Lock --> Diagnose

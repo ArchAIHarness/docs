@@ -1,0 +1,11 @@
+flowchart LR
+    D[原始文档] --> S[切分 Chunk]
+    S --> E[向量化 Embedding]
+    E --> V[向量库]
+    Q[用户问题] --> QE[问题向量化]
+    QE --> R[召回候选片段]
+    V --> R
+    R --> RR[重排]
+    RR --> C[构造上下文]
+    C --> LLM[大模型生成]
+    LLM --> A[带依据回答]

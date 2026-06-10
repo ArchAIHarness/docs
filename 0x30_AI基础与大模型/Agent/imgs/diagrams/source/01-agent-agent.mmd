@@ -1,0 +1,7 @@
+flowchart TD
+    G[目标 Goal] --> P[计划 Plan]
+    P --> T[工具调用 Tool Use]
+    T --> O[观察结果 Observation]
+    O --> R{是否达成目标?}
+    R -->|否| P
+    R -->|是| A[输出结果 Answer]
