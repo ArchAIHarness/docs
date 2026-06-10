@@ -1,0 +1,15 @@
+flowchart LR
+    Access[主要访问模式] --> Random[随机访问
+数组 / 向量]
+    Access --> Sequential[顺序遍历
+数组 / 批处理]
+    Access --> Lookup[快速查找
+哈希表]
+    Access --> Range[有序范围查询
+树 / 跳表 / 索引]
+    Access --> Priority[优先级获取
+堆 / 优先队列]
+    Access --> Relation[关系遍历
+图]
+    Access --> InsertDelete[频繁插入删除
+链表 / 树 / 队列]

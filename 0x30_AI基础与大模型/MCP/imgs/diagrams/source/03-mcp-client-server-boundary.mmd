@@ -1,0 +1,9 @@
+flowchart LR
+    A[AI Client] --> B[MCP Client]
+    B --> C[MCP Server]
+    C --> D[Tools 可执行动作]
+    C --> E[Resources 可读取信息]
+    C --> F[Prompts 可复用模板]
+    D --> G[外部 API/脚本/数据库]
+    E --> H[文件/文档/配置]
+    F --> I[任务模板]

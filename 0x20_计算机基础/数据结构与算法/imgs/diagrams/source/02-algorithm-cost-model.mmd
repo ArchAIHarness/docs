@@ -1,0 +1,20 @@
+flowchart TB
+    Problem[业务问题] --> DataFlow[数据如何流动]
+    DataFlow --> CPU[CPU 时间
+计算复杂度]
+    DataFlow --> Memory[内存占用
+空间复杂度]
+    DataFlow --> Cache[缓存友好性
+局部性 / 随机访问]
+    DataFlow --> IO[IO 成本
+磁盘 / 数据库]
+    DataFlow --> Network[网络调用
+往返次数 / 延迟]
+    DataFlow --> Maintain[维护成本
+复杂度 / 不变量]
+    CPU --> Choice[算法与数据结构选择]
+    Memory --> Choice
+    Cache --> Choice
+    IO --> Choice
+    Network --> Choice
+    Maintain --> Choice

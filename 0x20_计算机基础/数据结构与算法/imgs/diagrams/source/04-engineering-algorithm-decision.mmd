@@ -1,0 +1,19 @@
+flowchart TB
+    Start[选择算法/数据结构] --> Size{数据规模?}
+    Size -->|小| Simple[优先简单遍历]
+    Size -->|大| RW{读写比例?}
+    RW -->|读多写少| Index[索引 / 缓存 / 预计算]
+    RW -->|写多读少| Write[减少索引
+降低写放大]
+    RW -->|读写都高| Balance[状态拆分
+冷热分离]
+    Simple --> Latency{延迟敏感?}
+    Index --> Latency
+    Write --> Latency
+    Balance --> Latency
+    Latency -->|是| HotPath[优化热点路径
+减少 IO / 网络 / 分配]
+    Latency -->|否| Maintain[优先可维护]
+    HotPath --> Verify[压测验证]
+    Maintain --> Verify
+    Verify --> Choice[确定方案]
