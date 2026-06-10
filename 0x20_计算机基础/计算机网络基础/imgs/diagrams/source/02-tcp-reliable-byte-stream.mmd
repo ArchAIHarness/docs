@@ -1,0 +1,14 @@
+flowchart LR
+    IP[不可靠 IP
+可能丢包 / 乱序 / 重复] --> Seq[序列号
+标记字节顺序]
+    Seq --> Ack[ACK 确认
+知道哪些已收到]
+    Ack --> Retransmit[重传
+丢包后再次发送]
+    Retransmit --> Window[滑动窗口
+控制发送节奏]
+    Window --> Congestion[拥塞控制
+保护网络整体]
+    Congestion --> Stream[可靠有序字节流
+交给应用]

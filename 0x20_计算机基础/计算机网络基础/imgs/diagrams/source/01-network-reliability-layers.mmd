@@ -1,0 +1,13 @@
+flowchart TB
+    App[应用协作
+业务意图 / 请求响应] --> HTTP[HTTP
+方法 / 状态码 / Header / Body]
+    HTTP --> TCP[TCP
+可靠有序字节流]
+    TCP --> IP[IP
+寻址 / 路由 / 尽力而为]
+    IP --> Link[链路与设备
+网卡 / 交换机 / 路由器]
+    Link --> World[不可靠现实
+丢包 / 延迟 / 拥塞 / 故障]
+    World -.反向约束.-> App

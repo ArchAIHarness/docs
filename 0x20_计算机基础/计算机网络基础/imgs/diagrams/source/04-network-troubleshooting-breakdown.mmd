@@ -1,0 +1,15 @@
+flowchart LR
+    Request[一次请求慢/失败] --> DNS[DNS
+解析耗时]
+    DNS --> Connect[TCP 建连
+连接超时]
+    Connect --> TLS[TLS
+握手/证书]
+    TLS --> TTFB[首包时间
+服务端开始响应]
+    TTFB --> Server[服务端处理
+线程池/数据库/下游]
+    Server --> Download[响应下载
+带宽/丢包/窗口]
+    Download --> Client[客户端处理
+超时/重试/解析]

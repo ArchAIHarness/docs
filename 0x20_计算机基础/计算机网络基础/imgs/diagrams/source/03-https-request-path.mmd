@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant U as 用户/客户端
+    participant DNS as DNS
+    participant S as 服务端
+    U->>DNS: 解析域名
+    DNS-->>U: 返回 IP 地址
+    U->>S: TCP 三次握手
+    S-->>U: 连接建立
+    U->>S: TLS 握手 / 证书校验
+    S-->>U: 加密通道建立
+    U->>S: HTTP 请求
+    S-->>U: HTTP 响应
