@@ -11,6 +11,21 @@ node_modules/
 .env
 .env.*
 *.env
-.baoyu-skills/.env
-.baoyu-skills/**/*.env
-.baoyu-skills/mermaid-diagram-manifest.json
+*.local
+config.local.*
+
+# Runtime/cache/build outputs
+.cache/
+dist/
+build/
+coverage/
+logs/
+*.log
+tmp/
+temp/
+
+# Baoyu local runtime files: keep only shareable project-level EXTEND.md configs
+.baoyu-skills/**
+!.baoyu-skills/
+!.baoyu-skills/*/
+!.baoyu-skills/*/EXTEND.md
