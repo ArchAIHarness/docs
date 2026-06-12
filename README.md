@@ -103,6 +103,7 @@ ArchAIHarness 的唯一权威知识库,沉淀「**人负责架构、AI 负责编
 - [Agent Skills 实践指南](./0xD0_实践指南/AgentSkills实践指南.md)
 - [本地大模型运行实践指南](./0xD0_实践指南/本地大模型运行实践指南.md)
 - [OpenVPN Docker 部署指南](./0xD0_实践指南/OpenVPNDocker部署指南.md)
+- [模型网关技术选型](./0xD0_实践指南/模型网关技术选型.md)
 
 ### [0xE0 · 设计方案](./0xE0_设计方案)
 

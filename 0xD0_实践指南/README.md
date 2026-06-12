@@ -18,6 +18,7 @@
 | D10 | [OpenCode 开源技能与工具搭建指南](./OpenCode开源技能与工具搭建指南.md) | OpenCode 开源技能、MCP 工具与项目级治理能力的搭建步骤和验收标准 |
 | D11 | [本地大模型运行实践指南](./本地大模型运行实践指南.md) | LM Studio、Ollama、本地 API 与并发实践 |
 | D12 | [OpenVPN Docker 部署指南](./OpenVPNDocker部署指南.md) | OpenVPN 容器部署、证书生成、网络限制与运维命令 |
+| D13 | [模型网关技术选型](./模型网关技术选型.md) | LiteLLM、New API、失败兜底、多服务商治理与 OpenCode 接入 |
 
 ## 后续规划
 
