@@ -280,8 +280,8 @@ Phase 2  →  引入 agents.md 约束 AI 编码
 Phase 3  →  接入 mcp-sdk
             实现框架与 AI Agent 深度通信
 
-Phase 4  →  按需引入 skill-market 技能包
-            扩展领域专属 AI 能力
+Phase 4  →  按需引入 agent-workflows 工作流包
+            扩展领域专属 AI 协作能力
 ```
 
 > **延伸阅读**
