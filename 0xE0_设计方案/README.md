@@ -10,6 +10,7 @@
 | [WorkBuddy 自研编程代理设计方案](./WorkBuddy自研编程代理设计方案.md) | 基于 OpenCode 演化的智能工作伙伴 |
 | [沙箱工作空间文件系统设计方案](./沙箱工作空间文件系统设计方案.md) | 面向沙箱环境的轻量级版本化文件系统 |
 | [多租户 SaaS 内核设计方案](./多租户SaaS内核设计方案.md) | gateway、auth、user、tenant 组成的多租户 SaaS 最小闭环 |
+| [分布式多用户 OpenCode 智能体平台架构设计](./分布式多用户OpenCode智能体平台架构设计.md) | 基于 Kubernetes 的分布式弹性多用户 OpenCode 平台架构 |
 
 ## 设计方案的定位
 
