@@ -31,4 +31,4 @@
 - [`assets/ai-model-thinking/`](./assets/ai-model-thinking/)：AI 模型原理文章配图。
 - [`assets/agent-execution-system/`](./assets/agent-execution-system/)：Agent 执行系统文章配图。
 - [`assets/context-engineering/`](./assets/context-engineering/)：上下文工程文章配图（待生成）。
-- `assets/tool-skill-mcp/`：Tool、Skill、MCP 文章配图（待生成）。
+- [`assets/tool-skill-mcp/`](./assets/tool-skill-mcp/)：Tool、Skill、MCP 文章配图。

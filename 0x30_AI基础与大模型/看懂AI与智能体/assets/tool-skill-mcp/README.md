@@ -12,6 +12,15 @@
 - **构图**：每张图只解释一个核心概念，避免信息过载。
 - **边界**：不出现真实客户、内部系统、真实账号、密钥、品牌后台截图。
 
+## 已生成配图
+
+- `01-cover-tool-skill-mcp.png`：封面图，暂不插入正文。
+- `02-answer-vs-action.png`：已插入第一节后。
+- `03-tool-skill-mcp-stack.png`：已插入第四节后。
+- `04-capability-sources-map-v2.png`：已插入第五节后；`04-capability-sources-map.png` 为首版废弃候选，因文字不稳定保留作对比。
+- `05-capability-supply-for-builders-v2.png`：已插入第六节后；`05-capability-supply-for-builders.png` 为首版废弃候选，因水印过大保留作对比。
+- `06-boundary-audit-loop.png`：已插入第七节后。
+
 ## 建议配图清单
 
 ### 01-ai-answer-vs-action.png

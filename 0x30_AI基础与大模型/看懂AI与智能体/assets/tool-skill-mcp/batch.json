@@ -1,0 +1,50 @@
+[
+  {
+    "promptFiles": ["prompts/01-cover-tool-skill-mcp.md"],
+    "image": "01-cover-tool-skill-mcp.png",
+    "ar": "16:9",
+    "quality": "2k",
+    "provider": "seedream",
+    "model": "doubao-seedream-5.0-lite"
+  },
+  {
+    "promptFiles": ["prompts/02-answer-vs-action.md"],
+    "image": "02-answer-vs-action.png",
+    "ar": "16:9",
+    "quality": "2k",
+    "provider": "seedream",
+    "model": "doubao-seedream-5.0-lite"
+  },
+  {
+    "promptFiles": ["prompts/03-tool-skill-mcp-stack.md"],
+    "image": "03-tool-skill-mcp-stack.png",
+    "ar": "16:9",
+    "quality": "2k",
+    "provider": "seedream",
+    "model": "doubao-seedream-5.0-lite"
+  },
+  {
+    "promptFiles": ["prompts/04-capability-sources-map.md"],
+    "image": "04-capability-sources-map.png",
+    "ar": "16:9",
+    "quality": "2k",
+    "provider": "seedream",
+    "model": "doubao-seedream-5.0-lite"
+  },
+  {
+    "promptFiles": ["prompts/05-capability-supply-for-builders.md"],
+    "image": "05-capability-supply-for-builders.png",
+    "ar": "16:9",
+    "quality": "2k",
+    "provider": "seedream",
+    "model": "doubao-seedream-5.0-lite"
+  },
+  {
+    "promptFiles": ["prompts/06-boundary-audit-loop.md"],
+    "image": "06-boundary-audit-loop.png",
+    "ar": "16:9",
+    "quality": "2k",
+    "provider": "seedream",
+    "model": "doubao-seedream-5.0-lite"
+  }
+]

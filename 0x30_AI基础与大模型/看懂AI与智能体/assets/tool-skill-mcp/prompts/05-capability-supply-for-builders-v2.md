@@ -1,0 +1,41 @@
+---
+output: ../05-capability-supply-for-builders-v2.png
+aspect_ratio: "16:9"
+type: flow
+style_reference: existing ArchAIHarness hand-drawn paper illustrations
+---
+
+Create a 16:9 hand-drawn flow diagram matching the ArchAIHarness column illustration style:
+- warm cream paper background
+- black sketched lines and arrows
+- soft pastel orange, green, blue blocks
+- handwritten Chinese labels, minimal text
+- simple icons, no realistic people
+- no large watermark; if watermark appears, it must be very small at bottom-right and fully inside image
+
+Topic: 从业者把业务能力变成 AI 可调用能力.
+
+Composition: left-to-right flow.
+
+Left side: source assets, grouped as four hand-drawn cards with exactly these labels:
+- “业务系统” with app/window icon
+- “行业经验” with lightbulb/book icon
+- “数据源” with database icon
+- “专业流程” with checklist/process icon
+
+Middle: transformation layer with three vertical cards:
+- “Tool 供给”
+- “Skill 供给”
+- “MCP 服务”
+
+Right side: output card:
+- “Agent 可调用能力”
+- several small Agent icons connected to reusable capability blocks
+
+Bottom small handwritten sentence:
+“不只是给人用，也要给 Agent 用”
+
+Purpose:
+Show industry practitioners that value comes from packaging systems, processes, and knowledge into callable, reusable, auditable Agent capabilities.
+
+Avoid real company names, logos, internal systems, or sensitive data.

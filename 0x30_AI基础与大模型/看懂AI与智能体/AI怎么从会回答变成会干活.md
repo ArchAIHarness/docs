@@ -69,6 +69,8 @@
 
 接上外部能力之后，它才可能进入“我帮你做一部分”。
 
+![AI 会回答不等于会干活](assets/tool-skill-mcp/02-answer-vs-action.png)
+
 ## 二、Tool：AI 的手
 
 先讲 Tool。
@@ -234,6 +236,8 @@ MCP 主要解决的是“怎么连接”的问题。
 
 真正可靠的 Agent，不是因为接了很多 MCP 服务，而是因为它接入能力之后，仍然有清楚的目标、边界、验证和审计。
 
+![Tool、Skill 和 MCP 在 Agent 外部能力体系中的位置](assets/tool-skill-mcp/03-tool-skill-mcp-stack.png)
+
 ## 五、普通人从哪里获得这些能力？
 
 讲到这里，普通用户可能会问：
@@ -276,6 +280,8 @@ MCP 主要解决的是“怎么连接”的问题。
 如果一个 AI 能访问很多东西，却没有权限说明、没有确认步骤、没有日志记录，那就要谨慎。
 
 真正会用 AI 的人，不是看到能力就全部打开，而是知道什么时候该打开，什么时候该拒绝。
+
+![普通人获取 AI 外部能力的常见渠道](assets/tool-skill-mcp/04-capability-sources-map-v2.png)
 
 ## 六、从业者的机会：把业务能力变成 AI 能调用的能力
 
@@ -337,6 +343,8 @@ MCP 主要解决的是“怎么连接”的问题。
 
 这可能是很多行业从业者真正应该关注的机会。
 
+![从业者把业务能力封装成 Agent 可调用能力](assets/tool-skill-mcp/05-capability-supply-for-builders-v2.png)
+
 ## 七、能力越强，越需要边界和审计
 
 AI 有了 Tool、Skill、MCP，确实会更强。
@@ -378,6 +386,8 @@ AI 有了 Tool、Skill、MCP，确实会更强。
 Tool、Skill、MCP 都不是为了让 AI “想干什么就干什么”。
 
 它们真正的价值，是让 AI 在明确授权、明确流程、明确审计的前提下，把任务推进到一个可验证的结果。
+
+![能力越强越需要边界、确认和审计](assets/tool-skill-mcp/06-boundary-audit-loop.png)
 
 ## 八、写在最后：提示词不是咒语，而是任务契约
 
