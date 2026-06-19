@@ -38,6 +38,7 @@
 
 - [`assets/ai-model-thinking/`](./assets/ai-model-thinking/)：AI 模型原理文章配图。
 - [`assets/agent-execution-system/`](./assets/agent-execution-system/)：Agent 执行系统文章配图。
-- [`assets/context-engineering/`](./assets/context-engineering/)：上下文工程文章配图（待生成）。
+- [`assets/context-engineering/`](./assets/context-engineering/)：上下文工程文章配图。
 - [`assets/tool-skill-mcp/`](./assets/tool-skill-mcp/)：Tool、Skill、MCP 文章配图。
 - [`assets/prompt-contract/`](./assets/prompt-contract/)：提示词契约文章配图。
+- [`assets/ai-work-buddy/`](./assets/ai-work-buddy/)：AI 搭子/OpenCode 实操文章配图。
