@@ -455,25 +455,35 @@ ArchAIHarness 是一套面向 AI 时代软件工程的人机协同架构哲学�
 
 各平台渠道包**按平台拆分存放**，每个平台一个独立的隐藏目录，不使用 `channels/` 按文章组织的混合结构。
 
+**统一目录命名：**
+
+| 平台 | 目录名 | 说明 |
+|---|---|---|
+| 知乎 | `.zhihu-publish/` | 知乎专栏发布渠道包 |
+| CSDN | `.csdn-publish/` | CSDN 博客发布渠道包 |
+| 掘金 | `.juejin-publish/` | 掘金技术社区发布渠道包 |
+
+命名规则：`.{平台名}-publish/`，平台名在前，动作在后，全小写，统一格式。
+
 **目录结构：**
 
 ```
 看懂AI与智能体/
-├── .csdn-publish-ai-agent-series/     # CSDN 渠道包
+├── .zhihu-publish/              # 知乎渠道包
 │   ├── 第1篇-slug/
-│   │   ├── article.csdn.md
+│   │   ├── article.zhihu.md
 │   │   ├── metadata.json
 │   │   ├── publish-checklist.md
 │   │   └── browser-playbook.md
 │   └── 第2篇-slug/ ...
-├── .zhihu-publish-*/                  # 知乎渠道包
-├── .juejin-publish-series/            # 掘金渠道包
+├── .csdn-publish/               # CSDN 渠道包
+├── .juejin-publish/             # 掘金渠道包
 └── ...
 ```
 
 **规则：**
 
-- 每个平台的渠道包独立存放，目录名以 `.` 开头（隐藏目录），包含平台标识。
+- 每个平台的渠道包独立存放，目录名以 `.` 开头（隐藏目录），命名格式统一为 `.{平台}-publish/`。
 - 每篇文章在各平台目录下有独立的子目录，目录名 = 文章 slug + 随机后缀。
 - 每个渠道包包含 4 个文件：平台适配后的 Markdown（如 `article.csdn.md`）、`metadata.json`、`publish-checklist.md`、`browser-playbook.md`。
 - 发布完成后渠道包保留，作为发布记录和后续复盘/修改的依据。

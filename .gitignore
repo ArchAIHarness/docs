@@ -25,12 +25,8 @@ tmp/
 temp/
 
 # Local publishing scratch packages
-.zhihu-publish-*/
-**/.zhihu-publish-*/
-.csdn-publish-*/
-**/.csdn-publish-*/
-.juejin-publish-*/
-**/.juejin-publish-*/
+.*-publish/
+**/.*-publish/
 
 # Baoyu local runtime files: keep only shareable project-level EXTEND.md configs
 .baoyu-skills/**
