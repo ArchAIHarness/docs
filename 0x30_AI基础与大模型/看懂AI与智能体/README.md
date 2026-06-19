@@ -15,6 +15,9 @@
 4. [AI 怎么从“会回答”变成“会干活”？看懂 Tool、Skill 和 MCP](./AI怎么从会回答变成会干活.md)
    - 解释 Tool、Skill、MCP 如何让 AI 从生成回答走向执行任务，以及普通用户如何识别能力来源、从业者如何供给可调用能力。
    - 发布状态：已发布到知乎专栏《看懂 AI 与智能体》，链接：<https://zhuanlan.zhihu.com/p/2050966572882306331>。
+5. [别再找 Prompt 模板了：提示词的本质，是你和 AI 的任务契约](./别再找Prompt模板了.md)
+   - 从任务契约的角度解释提示词的本质，拆解好 Prompt 的五个零件，给出普通人三步法和工程师接口设计视角。
+   - 发布状态：草稿完成，配图已生成。
 
 ## 阅读建议
 
@@ -33,3 +36,4 @@
 - [`assets/agent-execution-system/`](./assets/agent-execution-system/)：Agent 执行系统文章配图。
 - [`assets/context-engineering/`](./assets/context-engineering/)：上下文工程文章配图（待生成）。
 - [`assets/tool-skill-mcp/`](./assets/tool-skill-mcp/)：Tool、Skill、MCP 文章配图。
+- [`assets/prompt-contract/`](./assets/prompt-contract/)：提示词契约文章配图。
