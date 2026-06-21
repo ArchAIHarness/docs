@@ -28,6 +28,10 @@ temp/
 .*-publish/
 **/.*-publish/
 
+# CSDN editor session snapshots (local debugging artifacts)
+.csdn-snapshots/
+**/.csdn-snapshots/
+
 # Baoyu local runtime files: keep only shareable project-level EXTEND.md configs
 .baoyu-skills/**
 !.baoyu-skills/
