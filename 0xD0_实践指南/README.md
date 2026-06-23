@@ -19,6 +19,7 @@
 | D11 | [本地大模型运行实践指南](./本地大模型运行实践指南.md) | LM Studio、Ollama、本地 API 与并发实践 |
 | D12 | [OpenVPN Docker 部署指南](./OpenVPNDocker部署指南.md) | OpenVPN 容器部署、证书生成、网络限制与运维命令 |
 | D13 | [模型网关技术选型](./模型网关技术选型.md) | LiteLLM、New API、失败兜底、多服务商治理与 OpenCode 接入 |
+| D14 | [OpenCode 基座 AI 产品组合选型蓝图](./OpenCode基座AI产品组合选型蓝图.md) | 以 OpenCode 为大脑，按受众×场景×交互形态（含师生教学/学习）组合开源外壳的产品选型蓝图 |
 
 ## 后续规划
 
