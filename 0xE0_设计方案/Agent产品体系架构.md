@@ -207,6 +207,88 @@ flowchart TB
 
 ---
 
+## 挂载与持久化设计
+
+### 设计原则
+
+| 原则 | 含义 |
+|------|------|
+| 完全持久化 | 用户数据全部进入 NAS，Pod 销毁不丢 |
+| 工作区 ↔ 全局分离 | `runtime/`（项目代码）和 `global/`（OpenCode 配置）分目录 |
+| 容器路径零侵入 | 全局数据放在 `~`，OpenCode 默认查找路径无需任何代码改动 |
+| 挂载最小化 | 一个 PV/PVC 通过两个 subPath 拆分，避免冗余挂载点 |
+
+### NAS 目录布局
+
+```
+{runtime.workdir}/{userId}/          # 一个 PV/PVC
+├── runtime/                          # → subPath 挂到容器 /app
+│   ├── AGENTS.md
+│   └── .opencode/
+│       └── opencode.json             # 项目级 OpenCode 配置
+└── global/                           # → subPath 挂到容器 ~
+    ├── .config/opencode/             # → ~/.config/opencode (全局配置)
+    ├── .local/share/opencode/        # → ~/.local/share/opencode (auth.json / 会话)
+    └── .cache/opencode/              # → ~/.cache/opencode (provider 包 / 插件缓存)
+```
+
+### 挂载映射表
+
+| 源路径(NAS) | 容器路径 | 方式 | 用途 |
+|---|---|---|---|
+| `{runtime.workdir}/{userId}/runtime` | `/app` | subPath | 用户项目工作目录，含 AGENTS.md 与项目级 `.opencode/` 配置 |
+| `{runtime.workdir}/{userId}/global` | `~` | subPath | 用户全局配置与 OpenCode 状态，完整对应用户主目录习惯 |
+
+### 挂载架构图
+
+```mermaid
+flowchart LR
+    subgraph NAS["NAS PV/PVC 用户根目录"]
+        R["runtime 子目录<br>AGENTS.md<br>.opencode/opencode.json"]
+        G["global 子目录<br>.config/opencode<br>.local/share/opencode<br>.cache/opencode"]
+    end
+
+    subgraph Pod["K8s Pod build-on-vscode-opencode-image"]
+        App["/app 项目工作目录"]
+        Home["用户家目录<br>.config/opencode<br>.local/share/opencode<br>.cache/opencode"]
+    end
+
+    R -->|"subPath"| App
+    G -->|"subPath"| Home
+
+    OC["opencode CLI 自动读家目录配置"] --> Home
+    CS["code-server 工作区为 /app"] --> App
+```
+
+### 首次创建实例的初始化流程
+
+`agent-gateway` 通过 Fabric8 在 K8s 上创建 Pod 时同步：
+
+1. 创建用户根目录 `{runtime.workdir}/{userId}/`
+2. 从模板拷贝默认 `opencode.json` → `runtime/.opencode/opencode.json`
+3. 模板预留 `"plugin": []` 空数组，业务按需追加
+4. OpenCode 启动时自动下载加载声明的插件（如 `agent-plugin@git+...`），无需修改镜像或网关代码
+
+### OpenCode 全局路径自动对齐
+
+| NAS 路径 | 容器路径 | OpenCode 用途 |
+|---|---|---|
+| `global/.config/opencode/` | `~/.config/opencode/` | 全局配置（provider / 模型） |
+| `global/.local/share/opencode/` | `~/.local/share/opencode/` | auth.json、会话历史 |
+| `global/.cache/opencode/` | `~/.cache/opencode/` | provider 包、插件缓存 |
+
+这一层天然契合 OpenCode 默认查找路径，**不需要任何代码改动**。
+
+### 设计优势
+
+- 完全分离：项目工作区与 OpenCode 全局数据各居一域
+- 路径零冲突：`runtime/` 挂 `/app`，`global/` 挂 `~`，互不干扰
+- 用户视角清晰：一眼分辨"项目文件 vs 个人配置"
+- 数据持久化：Pod 销毁后下次拉起状态无缝衔接
+- 扩展零侵入：`agent-plugin` 仅修改 `opencode.json` 引用即可加载新能力
+
+---
+
 ## 运行效果
 
 在 code-server 中通过 a2ui-opencode 插件打开 OpenCodeUI，与 AI Agent 对话：
@@ -222,3 +304,4 @@ flowchart TB
 - `05-工程研发/build-on-vscode-opencode-image/README.md` — 镜像构建文档
 - `05-工程研发/a2ui-opencode/README.md` — VS Code 插件文档
 - `05-工程研发/agent-plugin/README.md` — 插件系统文档
+- 「挂载与持久化设计」(本文) — subPath 双挂载 + NAS PV/PVC 持久化方案
